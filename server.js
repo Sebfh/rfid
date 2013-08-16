@@ -46,9 +46,10 @@ app.get('/client', function (req, res)
 
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
+  socket.on('news', function (data) {
+    io.sockets.emit('news', data);
   });
+  
 });
  
  
