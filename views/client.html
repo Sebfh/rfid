@@ -20,7 +20,7 @@
 	  var socket = io.connect('http://rfid-realtime.azurewebsites.net/');
 	  socket.on('news', function (data) {
 	    console.log(data);
-	    socket.emit('my other event', { my: 'data' });
+	    $('.log').append('<li>' + data.message + '</li>')
 	  });
 
 	  $('#frmForm').submit(function(e){
