@@ -6,9 +6,10 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http');
  
+var port = process.env.port || 1337; 
 
 var app = express();
-var server = app.listen();
+var server = app.listen(port);
 var io = require('socket.io').listen(server);
 
 io.configure(function () { 
