@@ -6,11 +6,9 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http');
  
-// Configure the port to run in
-var port = process.env.port || 81;
 
 var app = express();
-var server = app.listen(3000);
+var server = app.listen();
 var io = require('socket.io').listen(server);
 
 io.configure(function () { 
@@ -40,6 +38,17 @@ app.get('/about', function (req, res)
 {
     res.render('about.html');
 });
+app.get('/client', function (req, res)
+{
+    res.render('client.html');
+});
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
  
  
-console.log("Express server listening on port 3000");
+console.log("Express server listening on port %d", server.address().port);

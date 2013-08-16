@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title>Client</title>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+	<h1>Client</h1>
+
+	<script>
+	  var socket = io.connect('http://0.0.0.0');
+	  socket.on('news', function (data) {
+	    console.log(data);
+	    socket.emit('my other event', { my: 'data' });
+	  });
+	</script>
+</body>
+</html>
