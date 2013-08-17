@@ -45,6 +45,12 @@ app.get('/client', function (req, res)
     res.render('client.html');
 });
 
+app.get('/scan', function (req, res)
+{
+    res.send('id: ' + req.query.id;
+   	io.sockets.emit('news', { message: 'id:' + req.query.id});
+});
+
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { message: "Welcome"});
   socket.on('news', function (data) {
