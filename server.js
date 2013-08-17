@@ -46,7 +46,8 @@ app.get('/client', function (req, res)
 });
 
 io.sockets.on('connection', function (socket) {
-  socket.emit('news', { message: 'port:' + server.address().port});
+	var address = socket.handshake.address;
+  socket.emit('news', { message: "New connection from " + address.address + ":" + address.port});
   socket.on('news', function (data) {
   	console.log("port %d", server.address().port);
     io.sockets.emit('news', data);
