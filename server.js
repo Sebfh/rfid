@@ -47,7 +47,7 @@ app.get('/client', function (req, res)
 
 app.get('/scan', function (req, res)
 {
-    res.send('id: ' + req.query.id;
+    res.send('id: ' + req.query.id);
    	io.sockets.emit('news', { message: 'id:' + req.query.id});
 });
 
