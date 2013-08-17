@@ -8,7 +8,7 @@
 
 Adafruit_NFCShield_I2C nfc(IRQ, RESET);
  
-byte mac[] = {  0x90, 0xA2, 0xDA, 0x0E, 0xBB, 0x3D }; 
+byte mac[] = {  0x90, 0xA2, 0xDA, 0x0E, 0xBB, 0x3D };
 IPAddress ip(10, 0, 1, 122);			
 //IPAddress server(10,0,1,4);
 IPAddress server(65,52,128,33);
@@ -33,7 +33,15 @@ void setup()
     // configure board to read RFID tags
     nfc.SAMConfig();
     
-    Ethernet.begin(mac, ip);
+    if(Ethernet.begin(mac) == 0){
+      Serial.println("Failed to configure Ethernet using DHCP");
+      // no point in carrying on, so do nothing forevermore:
+      for(;;)
+        ;
+    }
+    // print your local IP address:
+    Serial.println(Ethernet.localIP());
+    
     Serial.begin(115200);
     Serial.println(Ethernet.localIP());
     Serial.println(server);
