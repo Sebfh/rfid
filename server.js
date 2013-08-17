@@ -38,6 +38,7 @@ app.get('/', routes.index);
 app.get('/about', function (req, res)
 {
     res.render('about.html');
+    io.sockets.emit('news', { message: 'somebody is at about'});
 });
 app.get('/client', function (req, res)
 {
