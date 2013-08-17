@@ -45,10 +45,15 @@ app.get('/client', function (req, res)
     res.render('client.html');
 });
 
-app.get('/scan', function (req, res)
-{
-    res.send('id: ' + req.query.id);
-   	io.sockets.emit('news', { message: 'id:' + req.query.id});
+// app.get('/scan', function (req, res)
+// {
+//     res.send('id: ' + req.query.id);
+//    	io.sockets.emit('news', { message: 'id:' + req.query.id});
+// });
+
+app.post('/scan', function(req, res) {
+    var card = req.body.card;
+    io.sockets.emit('news', { message: 'card:' + card});
 });
 
 io.sockets.on('connection', function (socket) {
