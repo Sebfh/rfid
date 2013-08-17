@@ -46,7 +46,7 @@ app.get('/client', function (req, res)
 });
 
 io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
+  socket.emit('news', { message: server.address().port});
   socket.on('news', function (data) {
   	console.log("port %d", server.address().port);
     io.sockets.emit('news', data);
