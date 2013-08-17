@@ -2,6 +2,8 @@
 <head>
 	<title>Welcome &mdash; RFID concept</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="/stylesheets/style.css">
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
@@ -23,6 +25,8 @@
 		</footer>
 	</div>
 	<script>
+		window.scrollTo(0,1);
+		
 	  var socket = io.connect('http://rfid-realtime.azurewebsites.net');
 	  socket.on('news', function (data) {
 	    console.log(data);
