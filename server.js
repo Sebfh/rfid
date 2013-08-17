@@ -55,7 +55,7 @@ app.get('/welcome', function (req, res)
 
 app.post('/scan', function(req, res) {
     var card = req.body.card;
-    io.sockets.emit('news', { message: 'Card found: #' + card});
+    io.sockets.emit('news', { message: card});
     
     res.send("thanks");
 });
