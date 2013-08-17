@@ -40,20 +40,16 @@ app.get('/about', function (req, res)
     res.render('about.html');
     io.sockets.emit('news', { message: 'somebody is at about'});
 });
+
 app.get('/client', function (req, res)
 {
     res.render('client.html');
 });
 
-// app.get('/scan', function (req, res)
-// {
-//     res.send('id: ' + req.query.id);
-//    	io.sockets.emit('news', { message: 'id:' + req.query.id});
-// });
-
 app.post('/scan', function(req, res) {
     var card = req.body.card;
-    io.sockets.emit('news', { message: 'card:' + card});
+    io.sockets.emit('news', { message: 'Card found: #' + card});
+    
     res.send("thanks");
 });
 
@@ -65,6 +61,5 @@ io.sockets.on('connection', function (socket) {
   });
   
 });
- 
- 
+
 console.log("Express server listening on port %d", server.address().port);
