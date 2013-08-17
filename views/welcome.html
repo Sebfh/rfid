@@ -1,0 +1,79 @@
+<html>
+<head>
+	<title>Welcome &mdash; RFID concept</title>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+<body class="neutral">
+	<div class="container">
+		<header>
+			<h1>Welcome
+			<span>Please scan your card to get started</span>
+		</h1>
+		</header>
+		<section class="status">
+			<i class="icon-cloud icon-pulse icon-4x"></i>
+		</section>
+		<footer>
+			Something <a href="#" id="btnGood">good</a> or 
+			<a href="#" id="btnBad">bad</a> is about to happen. Or <a href="#" id="btnNeutral">not</a>.
+		</footer>
+	</div>
+	<script>
+	  var socket = io.connect('http://rfid-realtime.azurewebsites.net');
+	  socket.on('news', function (data) {
+	    console.log(data);
+	    checkCard(data.message);
+
+	    //$('.log').append('<li>' + data.message + '</li>')
+	  });
+
+	  $('#btnNeutral').click(function(e){
+	  	e.preventDefault();
+	  	toNeutral();
+	  });
+	  $('#btnGood').click(function(e){
+	  	e.preventDefault();
+	  	doGood();
+	  });
+	  $('#btnBad').click(function(e){
+	  	e.preventDefault();
+	  	doBad();
+	  });
+
+	  function checkCard(card){
+	  	switch(card){
+	  		case '2374620235':
+	  			doGood();
+	  		break;
+	  		default:
+	  			doBad();
+	  		break;
+	  	}
+	  }
+
+	  function doGood(){
+	  	console.log('Something good is about to happen!');
+	  	$('.status > i').removeClass('icon-cloud').removeClass('icon-pulse').removeClass('icon-umbrella').addClass('icon-heart-empty');
+	  	$('body').removeClass('neutral').removeClass('bad').addClass('good');
+
+	  	setTimeout(function(){toNeutral()},5000);
+	  }
+	  function doBad(){
+	  	console.log('Aw snap!');
+	  	$('.status > i').removeClass('icon-cloud').removeClass('icon-pulse').addClass('icon-umbrella');
+	  	$('body').removeClass('neutral').removeClass('good').addClass('bad');
+
+	  	setTimeout(function(){toNeutral()},5000);
+	  }
+		function toNeutral(){
+			console.log('Things should be back to normal!');
+	  	$('.status > i').removeClass('icon-heart-empty').removeClass('icon-umbrella').addClass('icon-pulse').addClass('icon-cloud');
+	  	$('body').removeClass('bad').removeClass('good').addClass('neutral');
+		} 
+
+	</script>
+</body>
+</html>

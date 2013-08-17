@@ -5,19 +5,25 @@
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 </head>
-<body>
-	<h1>Client</h1>
-	<ul class="log">
-	</ul>	
-	<form id="frmForm" action="/" method="post">
-		<input type="text" id="txtMessage" style="width: 220px;" />
-		<select id="selChannel" style="width:220px;">
-			<option value="news">RFID</option>
-		</select>
-		<input type="submit" value="Emit" />
-	</form>
+<body class="neutral">
+	<div class="container">
+		<header>
+			<h1>Client
+			<span>Socket.io client, showing all traffic</span>
+		</h1>
+		</header>
+		<ul class="log">
+		</ul>	
+		<form id="frmForm" action="/" method="post">
+			<input type="text" id="txtMessage" />
+			<select id="selChannel" style="width:220px;">
+				<option value="news">RFID</option>
+			</select>
+			<input type="submit" value="Emit" />
+		</form>
+	</div>
 	<script>
-	  var socket = io.connect('http://rfid-realtime.azurewebsites.net/');
+	  var socket = io.connect('http://rfid-realtime.azurewebsites.net');
 	  socket.on('news', function (data) {
 	    console.log(data);
 	    $('.log').append('<li>' + data.message + '</li>')

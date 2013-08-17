@@ -33,7 +33,10 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
  
-app.get('/', routes.index);
+// app.get('/', routes.index);
+app.get('/', function(req, res){
+	res.redirect('/welcome');
+});
 
 app.get('/about', function (req, res)
 {
@@ -44,6 +47,10 @@ app.get('/about', function (req, res)
 app.get('/client', function (req, res)
 {
     res.render('client.html');
+});
+app.get('/welcome', function (req, res)
+{
+    res.render('welcome.html');
 });
 
 app.post('/scan', function(req, res) {

@@ -1,8 +1,133 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700italic);
+* { 
+	padding: 0; 
+	margin: 0; 
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	list-style: none;
+	position: relative;
+
+	transition: all 0.5s ease;
+}
+body { 
+	
+	color: #FFF;
+	
+	font-family: 'Lato', sans-serif; 
+	/*text-transform: uppercase; */
+	letter-spacing: 1px; 
+	padding: 5%;
+}
+a {
+	color: #fff;
+	opacity: 0.7;
+	text-decoration: none;
+}
+a:hover {
+	opacity: 1;
+}
+header {
+	text-align: center;
+}
+header h1 {
+	font-size: 2.625em;
+	line-height: 1.3;
+	margin: 0;
+	font-weight: 300;
+}
+header span {
+	display: block;
+	font-size: 60%;
+	opacity: 0.7;
+	padding: 0 0 0.6em 0.1em;
+}
+form {
+	text-align: center;
+}
+form > input{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	font-family: 'Lato', sans-serif;
+	letter-spacing: 1px;
+	font-size: 22px;
+	padding: 2px 4px 2px 4px;
+
+	display: block;
+	margin: 0 auto;
+}
+form > input[type="submit"]{
+	width: 300px;
+
+
+	background-color: rgba(0, 0, 0, 0);
+	height: 50px;
+	cursor: pointer;
+border: 3px solid rgba(255, 255, 255, 1);
+	color: rgba(255, 255, 255, 1);
+	display: block;
+	margin: 0 auto;
+	opacity: 0.7;
+}
+form > input[type="submit"]:hover{
+	opacity: 1;
+}
+form > select {
+	display: block;
+	margin: 0 auto;
+}
+.neutral {
+	background: #0e83cd;
+}
+.bad {
+	background: #F06060;
+}
+.good {
+	background: #52BE7F;
 }
 
-a {
-  color: #00B7FF;
+.status {
+	text-align: center;
+	font-size: 3em;
+	margin:10%;
+}
+
+.icon-pulse {
+  display: inline-block;
+  -moz-animation: pulse 2s infinite linear;
+  -o-animation: pulse 2s infinite linear;
+  -webkit-animation: pulse 2s infinite linear;
+  animation: pulse 2s infinite linear;
+}
+
+
+
+@-webkit-keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-ms-keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+footer {
+	text-align: center;
 }
